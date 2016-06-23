@@ -9,6 +9,22 @@
 npm install screwdriver-hashr
 ```
 
+The module exposes a simple interface for the different options available for calling
+[hasha](ghub.io/hasha).
+
+The function calls `JSON.stringify` on the value passed in
+
+### sha1
+```
+const hashr = require('screwdriver-hashr');
+const objectToHash = {
+  hash1: 'value1',
+  hash2: 'value2'
+};
+console.log(hashr.sha1(objectToHash));
+```
+
+
 ## Testing
 
 ```bash
