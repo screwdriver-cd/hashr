@@ -1,0 +1,8 @@
+jobs:
+    main:
+        steps:
+            configure: ./scripts/configure
+            install: npm install
+            test: npm test
+            bump: npm run bump
+            publish: npm publish && git push origin --tags -q
