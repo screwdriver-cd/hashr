@@ -1,0 +1,67 @@
+#!/bin/bash
+
+npm_setup() {
+  if [ -z "${NPM_TOKEN}" ]; then
+    echo 'Please specify auth token'
+    exit 1
+  fi
+
+  if [ -z "${NPM_CONFIG_ACCESS}" ]; then
+    export NPM_CONFIG_ACCESS=public
+    npm config set access public
+  else
+    echo "NPM_CONFIG_ACCESS=${NPM_CONFIG_ACCESS}"
+  fi
+}
+
+npm_login() {
+  echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+
+  local retries=3;
+  for try in $(seq "$retries"); do
+    echo "Starting npm whoami, try: $try"
+    npm whoami && return
+  done
+
+  echo "Failed to authenticate with npm, retries: $retries"
+  exit 1
+}
+
+npm_publish() {
+  NPM_VERSION=$(grep package.json -e 'version' | awk '{print substr($2, 2, length($2)-3)}')
+  NPM_VERSION_PRERELEASE=$(echo "${NPM_VERSION}" | cut -d '-' -f 2 -s)
+
+  echo "NPM_VERSION=${NPM_VERSION}"
+  echo "NPM_VERSION_PRERELEASE=${NPM_VERSION_PRERELEASE}"
+
+  retries=3
+
+  for try in $(seq "$retries"); do
+    echo "try: ${try}"
+
+    echo "npm publish . --tag latest"
+    npm publish . --tag latest && return
+
+  done
+
+  echo "npm publish failed with status code $?"
+  exit 1
+}
+
+main() {
+  echo "Installing npm-auto-version"
+  npm install -g npm-auto-version
+
+  echo "Running npm-auto-version"
+  npm-auto-version
+
+  npm_setup
+  set +e
+  npm_login
+  npm_publish
+  set -e
+
+  echo "Package successfully published to NPM"
+}
+
+main;
