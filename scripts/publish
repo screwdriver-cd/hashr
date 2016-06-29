@@ -1,6 +1,10 @@
 #! /bin/bash -e
 
-git version
+echo "Adding new remote origin"
 git remote add tagpusher https://${GIT_TOKEN}@github.com/screwdriver-cd/hashr.git
-git tag vTest
+
+echo "Running npm publish"
+./scripts/npm-publish
+
+echo "Pushing tags back to repo"
 git push tagpusher --tags
