@@ -1,0 +1,6 @@
+#! /bin/bash
+
+git version
+git remote add tag_pusher https://$GIT_TOKEN@github.com/screwdriver-cd/hashr.git
+git tag vTest
+git push tag_pusher --tags

@@ -1,6 +1,6 @@
 jobs:
     main:
         steps:
-            echo: echo $SECRET_PASSWORD
             install: npm install
             test: npm test
+            tags: ./scripts/stuff
