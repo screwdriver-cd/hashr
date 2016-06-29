@@ -3,4 +3,4 @@ jobs:
         steps:
             install: npm install
             test: npm test
-            tags: ./scripts/stuff
+            publish: ./scripts/publish

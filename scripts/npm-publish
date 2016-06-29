@@ -1,0 +1,31 @@
+#!/bin/bash -x
+
+npm_setup() {
+  npm config set access public
+  echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+}
+
+npm_publish() {
+  NPM_VERSION=$(grep package.json -e 'version' | awk '{print substr($2, 2, length($2)-3)}')
+  echo "NPM_VERSION=${NPM_VERSION}"
+
+  npm publish && return
+
+  echo "npm publish failed with status code $?"
+  exit 1
+}
+
+main() {
+  npm install -g npm-auto-version
+
+  npm-auto-version
+
+  npm_setup
+  set +e
+  npm_publish
+  set -e
+
+  echo "Package successfully published to NPM"
+}
+
+main;
