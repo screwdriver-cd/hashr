@@ -6,8 +6,7 @@
   "scripts": {
     "pretest": "eslint .",
     "test": "jenkins-mocha --recursive",
-    "bump": "npm-auto-version",
-    "postpublish": "git push origin --tags"
+    "bump": "npm-auto-version"
   },
   "repository": {
     "type": "git",
