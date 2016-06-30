@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "pretest": "eslint .",
-    "test": "jenkins-mocha --recursive"
+    "test": "jenkins-mocha --recursive",
+    "bump": "npm-auto-version",
+    "postpublish": "git push origin --tags"
   },
   "repository": {
     "type": "git",
@@ -37,6 +39,7 @@
     "eslint-plugin-react": "^5.1.1",
     "jenkins-mocha": "^2.6.0",
     "mockery": "^1.7.0",
+    "npm-auto-version": "^1.0.0",
     "sinon": "^1.17.4"
   },
   "dependencies": {
