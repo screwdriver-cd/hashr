@@ -1,0 +1,5 @@
+#!/bin/bash -e
+
+git remote set-url --push origin https://${GIT_TOKEN}@github.com/screwdriver-cd/hashr.git
+npm config set access public
+npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
