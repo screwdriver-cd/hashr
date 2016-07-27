@@ -1,8 +1,15 @@
+workflow:
+    - publish
+
 jobs:
     main:
         steps:
-            configure: ./scripts/configure
             install: npm install
             test: npm test
+
+    publish:
+        steps:
+            configure: ./scripts/configure
+            install: npm install
             bump: npm run bump
             publish: npm publish && git push origin --tags -q
