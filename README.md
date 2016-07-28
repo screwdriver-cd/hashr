@@ -8,7 +8,7 @@
 ```bash
 npm install screwdriver-hashr
 ```
-
+Wat
 The module exposes a simple interface for the different options available for calling
 [hasha](ghub.io/hasha).
 
