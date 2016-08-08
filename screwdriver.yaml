@@ -6,7 +6,7 @@ jobs:
         steps:
             install: npm install
             test: npm test
-            hostname: echo "hostnamess"
+            hostname: echo "hostnamessxx"
 
     # publish:
     #     steps:
