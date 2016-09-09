@@ -1,5 +1,12 @@
 #!/bin/bash -e
 
+if [ -z "$GIT_TOKEN" ] || [ -z "$NPM_TOKEN" ]; then
+  exit 0
+fi
+
 git remote set-url --push origin https://${GIT_TOKEN}@github.com/screwdriver-cd/hashr.git
 npm config set access public
 npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
+
+npm run bump
+npm publish && git push origin --tags -q
