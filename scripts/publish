@@ -1,12 +1,18 @@
 #!/bin/bash -e
 
 if [ -z "$GIT_TOKEN" ] || [ -z "$NPM_TOKEN" ]; then
+  echo Skipping publish in Pull Request
   exit 0
 fi
 
+# Setting up secrets
 git remote set-url --push origin https://${GIT_TOKEN}@github.com/screwdriver-cd/hashr.git
-npm config set access public
-npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
+npm config set access public > /dev/null
+npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN} > /dev/null
 
+# Bump the version
 npm run bump
-npm publish && git push origin --tags -q
+# Publish the package
+npm publish
+# Push the new tag to GitHub
+git push origin --tags -q
