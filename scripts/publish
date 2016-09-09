@@ -7,8 +7,8 @@ fi
 
 # Setting up secrets
 git remote set-url --push origin https://${GIT_TOKEN}@github.com/screwdriver-cd/hashr.git
-npm config set access public > /dev/null
-npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN} > /dev/null
+npm config set access public > /dev/null 2>&1
+npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN} > /dev/null 2>&1
 
 # Bump the version
 npm run bump
