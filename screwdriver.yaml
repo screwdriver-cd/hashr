@@ -1,5 +1,5 @@
-# workflow:
-#     - publish
+workflow:
+    - publish
 
 jobs:
     main:
@@ -7,14 +7,15 @@ jobs:
         steps:
             - install: npm install
             - test: npm test
+            # @TODO Remove this when workflow works
             - publish: ./scripts/publish
         secrets:
             - NPM_TOKEN
             - GIT_TOKEN
 
-    # publish:
-    #     steps:
-    #         configure: ./scripts/configure
-    #         install: npm install
-    #         bump: npm run bump
-    #         publish: npm publish && git push origin --tags -q
+    publish:
+        steps:
+            - publish: ./scripts/publish
+        secrets:
+            - NPM_TOKEN
+            - GIT_TOKEN
