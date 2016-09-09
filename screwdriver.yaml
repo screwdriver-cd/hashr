@@ -1,5 +1,5 @@
-workflow:
-    - publish
+# workflow:
+#     - publish
 
 shared:
     image: node:6
@@ -15,9 +15,9 @@ jobs:
             - NPM_TOKEN
             - GIT_TOKEN
 
-    publish:
-        steps:
-            - publish: ./scripts/publish
-        secrets:
-            - NPM_TOKEN
-            - GIT_TOKEN
+    # publish:
+    #     steps:
+    #         - publish: ./scripts/publish
+    #     secrets:
+    #         - NPM_TOKEN
+    #         - GIT_TOKEN
