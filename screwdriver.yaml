@@ -12,6 +12,7 @@ jobs:
 
     publish:
         steps:
+            - install: npm install
             - publish: ./scripts/publish
         secrets:
             - NPM_TOKEN
