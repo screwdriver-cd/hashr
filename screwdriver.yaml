@@ -1,5 +1,5 @@
-# workflow:
-#     - publish
+workflow:
+    - publish
 
 shared:
     image: node:6
@@ -9,15 +9,10 @@ jobs:
         steps:
             - install: npm install
             - test: npm test
-            # @TODO Remove this when workflow works
+
+    publish:
+        steps:
             - publish: ./scripts/publish
         secrets:
             - NPM_TOKEN
             - GIT_TOKEN
-
-    # publish:
-    #     steps:
-    #         - publish: ./scripts/publish
-    #     secrets:
-    #         - NPM_TOKEN
-    #         - GIT_TOKEN
