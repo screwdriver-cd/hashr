@@ -1,4 +1,5 @@
 'use strict';
+
 const hasha = require('hasha');
 
 module.exports = {
