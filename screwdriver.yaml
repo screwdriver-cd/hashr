@@ -12,8 +12,10 @@ jobs:
 
     publish:
         steps:
-            - install: npm install
-            - publish: ./scripts/publish
+            - install: npm install semantic-release
+            - publish: npm run semantic-release
         secrets:
+            # Publishing to NPM
             - NPM_TOKEN
-            - GIT_TOKEN
+            # Pushing tags to Git
+            - GH_TOKEN
