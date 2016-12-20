@@ -54,6 +54,6 @@ describe('index test', () => {
         const str = 'foo';
 
         index.sha1(str);
-        assert.calledWith(hashaMock, JSON.stringify(str), sha1Options);
+        assert.calledWith(hashaMock, JSON.stringify('bar'), sha1Options);
     });
 });
